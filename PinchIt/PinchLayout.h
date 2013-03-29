@@ -100,4 +100,7 @@
 @property (nonatomic, assign) CGPoint pinchedCellCenter;
 @property (nonatomic, strong) NSIndexPath* pinchedCellPath;
 
+@property (nonatomic, readonly, strong) NSArray *lastLayoutAttributes;
+@property (nonatomic, readonly, assign) CGRect lastLayoutAttributesElementsRect;
+
 @end

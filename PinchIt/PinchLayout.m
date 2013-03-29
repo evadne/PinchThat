@@ -94,7 +94,16 @@
 
 #import "PinchLayout.h"
 
+@interface PinchLayout ()
+@property (nonatomic, readwrite, strong) NSArray *lastLayoutAttributes;
+@property (nonatomic, readwrite, assign) CGRect lastLayoutAttributesElementsRect;
+@end
+
 @implementation PinchLayout
+
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
+	return YES;
+}
 
 -(void)applyPinchToLayoutAttributes:(UICollectionViewLayoutAttributes*)layoutAttributes
 {
@@ -102,7 +111,7 @@
     {
         layoutAttributes.transform3D = CATransform3DMakeScale(self.pinchedCellScale, self.pinchedCellScale, 1.0);
         layoutAttributes.center = self.pinchedCellCenter;
-        layoutAttributes.zIndex = 1;
+        layoutAttributes.zIndex = 100;
     }
 }
 
@@ -114,14 +123,17 @@
     {
         [self applyPinchToLayoutAttributes:cellAttributes];
     }
-    
+		
+		self.lastLayoutAttributes = allAttributesInRect;
+		self.lastLayoutAttributesElementsRect = rect;
+		
     return allAttributesInRect;
 }
 
 -(UICollectionViewLayoutAttributes*)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewLayoutAttributes* attributes = [super layoutAttributesForItemAtIndexPath:indexPath];
-    
+		
     [self applyPinchToLayoutAttributes:attributes];
 
     return attributes;
@@ -130,11 +142,13 @@
 -(void)setPinchedCellScale:(CGFloat)scale
 {
     _pinchedCellScale = scale;
+		[self.collectionView setNeedsLayout];
     [self invalidateLayout];
 }
 
 - (void)setPinchedCellCenter:(CGPoint)origin {
     _pinchedCellCenter = origin;
+		[self.collectionView setNeedsLayout];
     [self invalidateLayout];
 }
 

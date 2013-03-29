@@ -97,5 +97,6 @@
 @interface Cell : UICollectionViewCell
 
 @property (strong, nonatomic) UILabel* label;
+@property (nonatomic, readonly, strong) UICollectionViewLayoutAttributes *lastAttributes;
 
 @end

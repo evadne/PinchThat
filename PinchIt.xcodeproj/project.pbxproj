@@ -17,6 +17,8 @@
 		77DEF7CC157ED9380057C06D /* PinchLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DEF7CB157ED9380057C06D /* PinchLayout.m */; };
 		77DEF7CF157ED94C0057C06D /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DEF7CE157ED94C0057C06D /* Cell.m */; };
 		77DEF7D1157EDCFF0057C06D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77DEF7D0157EDCFF0057C06D /* QuartzCore.framework */; };
+		FFFA555A170530B40071D2D3 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFFA5559170530B40071D2D3 /* HeaderView.m */; };
+		FFFA555D170532F10071D2D3 /* PICollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFFA555C170532F10071D2D3 /* PICollectionView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,10 @@
 		77DEF7CD157ED94C0057C06D /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
 		77DEF7CE157ED94C0057C06D /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 		77DEF7D0157EDCFF0057C06D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		FFFA5558170530B40071D2D3 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
+		FFFA5559170530B40071D2D3 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
+		FFFA555B170532F10071D2D3 /* PICollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PICollectionView.h; sourceTree = "<group>"; };
+		FFFA555C170532F10071D2D3 /* PICollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PICollectionView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +99,12 @@
 				77DEF7CE157ED94C0057C06D /* Cell.m */,
 				77DEF7BF157ED8390057C06D /* ViewController.h */,
 				77DEF7C0157ED8390057C06D /* ViewController.m */,
+				FFFA5558170530B40071D2D3 /* HeaderView.h */,
+				FFFA5559170530B40071D2D3 /* HeaderView.m */,
 				77DEF7CA157ED9380057C06D /* PinchLayout.h */,
 				77DEF7CB157ED9380057C06D /* PinchLayout.m */,
+				FFFA555B170532F10071D2D3 /* PICollectionView.h */,
+				FFFA555C170532F10071D2D3 /* PICollectionView.m */,
 				77DEF7B4157ED8390057C06D /* Supporting Files */,
 			);
 			path = PinchIt;
@@ -178,6 +188,8 @@
 				77DEF7C1157ED8390057C06D /* ViewController.m in Sources */,
 				77DEF7CC157ED9380057C06D /* PinchLayout.m in Sources */,
 				77DEF7CF157ED94C0057C06D /* Cell.m in Sources */,
+				FFFA555A170530B40071D2D3 /* HeaderView.m in Sources */,
+				FFFA555D170532F10071D2D3 /* PICollectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

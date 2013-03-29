@@ -92,7 +92,14 @@
  
  */
 
+#import <QuartzCore/QuartzCore.h>
 #import "Cell.h"
+
+@interface Cell ()
+
+@property (nonatomic, readwrite, strong) UICollectionViewLayoutAttributes *lastAttributes;
+
+@end
 
 @implementation Cell
 
@@ -112,6 +119,14 @@
         self.contentView.layer.borderColor = [UIColor whiteColor].CGColor;
     }
     return self;
+}
+
+- (void) applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
+
+	[super applyLayoutAttributes:layoutAttributes];
+	
+	self.lastAttributes = layoutAttributes;
+	
 }
 
 @end

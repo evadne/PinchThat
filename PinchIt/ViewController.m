@@ -92,22 +92,70 @@
  
  */
 
+#import "HeaderView.h"
 #import "ViewController.h"
 #import "Cell.h"
 #import "PinchLayout.h"
+#import "PICollectionView.h"
+#import <objc/runtime.h>
 
 @implementation ViewController
+
+//+ (id) new {
+//
+//	UICollectionViewController *answer = [super new];
+//	NSMutableData *data = [NSMutableData data];
+//	NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+//	[archiver encodeObject:answer forKey:@"root"];
+//	[archiver finishEncoding];
+//	NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+//	[unarchiver setClass:[PICollectionView class] forClassName:[UICollectionView class]];
+//	ViewController *realAnswer = [unarchiver decodeObjectForKey:@"root"];
+//	
+//	PinchLayout* pinchLayout = [[PinchLayout alloc] init];
+//	pinchLayout.itemSize = CGSizeMake(100.0, 100.0);
+//	[realAnswer initWithCollectionViewLayout:pinchLayout];
+//	
+//	return realAnswer;
+//
+//}
+
+- (UICollectionView *) collectionView {
+
+	UICollectionView *answer = [super collectionView];
+	object_setClass(answer, [PICollectionView class]); // hax
+	
+	return answer;
+
+}
 
 -(void)viewDidLoad
 {
     UIPinchGestureRecognizer* pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchGesture:)];
     [self.collectionView addGestureRecognizer:pinchRecognizer];
     [self.collectionView registerClass:[Cell class] forCellWithReuseIdentifier:@"MY_CELL"];
+		
+		[self.collectionView registerClass:[HeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"Header"];
+		
+		PinchLayout *layout = (PinchLayout *)self.collectionView.collectionViewLayout;
+		[layout setHeaderReferenceSize:(CGSize){ 128, 128 }];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section;
 {
-    return 63;
+    return 25;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+
+	return [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"Header" forIndexPath:indexPath];
+
+}
+
+- (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+
+	return 10;
+
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath;
@@ -136,10 +184,13 @@
     
     else
     {
-        [self.collectionView performBatchUpdates:^{
-            pinchLayout.pinchedCellPath = nil;
-            pinchLayout.pinchedCellScale = 1.0;
-        } completion:nil];
+			[self.collectionView performBatchUpdates:^{
+				pinchLayout.pinchedCellPath = nil;
+				pinchLayout.pinchedCellScale = 1.0;
+				[pinchLayout invalidateLayout];
+			} completion:^(BOOL finished) {
+				[self.collectionView layoutSubviews];
+			}];
     }
 }
 
